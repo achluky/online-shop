@@ -10,7 +10,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Online Shop</a>
+                <a class="navbar-brand page-scroll" href="<?= URL_ ?>#page-top">Online Shop</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,10 +20,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#pemesanan">Pemesanan</a>
+                        <a class="page-scroll" href="<?= URL_ ?>#pemesanan">Pemesanan</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Belanja</a>
+                        <a class="page-scroll" href="<?= URL_ ?>#portfolio">Belanja</a>
                     </li>
                     <li class="dropdown">
                         <a class="page-scroll dropdown-toggle" data-toggle="dropdown" href="javascript:;">Kategori <span class="caret"></span></a>
@@ -37,14 +37,14 @@
                         <a class="page-scroll" href="#tentang">Tentang</a>
                     </li> -->
                     <li>
-                        <a class="page-scroll" href="#kontak">Kontak</a>
+                        <a class="page-scroll" href="<?= URL_ ?>#kontak">Kontak</a>
                     </li>
                     <?php if($is_pelanggan) { ?>
                     <li>
                         <a  class="page-scroll dropdown-toggle" data-toggle="dropdown" href="javascript:;" href='<?= URL_ ?>signout'><?= $session_data['nama'] ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu btn-primary">
                             <li>
-                                <a href="<?= URL_ ?>" style="color: #555">Riwayat Pemesanan</a>
+                                <a href="<?= URL_ ?>riwayat/pemesanan" style="color: #555">Riwayat Pemesanan</a>
                             </li>
                             <li>
                                 <a href="<?= URL_ ?>" style="color: #555">Edit Profil</a>

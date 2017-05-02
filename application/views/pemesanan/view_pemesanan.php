@@ -153,7 +153,7 @@
                                                                 </td>
                                                                 <td style="text-align: left; vertical-align: middle;">&nbsp; <?php echo $list->nama_barang; ?></td>
                                                                 <td>
-                                                                    <input type="hidden" name="idm[]" value="<?php echo $list->kode_barang; ?>">
+                                                                    <input type="hidden" name="kode_barang[]" value="<?php echo $list->kode_barang; ?>">
                                                                     <input type="number" id="quantity" onchange="updateQty(this.value)" class="form-control" min="1" step="1" name="qty[]" style="width: 60px" value="1">
                                                                 </td>
                                                                 <td style=" vertical-align: middle; padding-right:15px;" id="harga_<?php echo $no;?>"><?php echo " Rp. ".number_format($list->harga); ?></td>

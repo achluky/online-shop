@@ -16,15 +16,15 @@ class Pemesanan extends CI_Controller {
             'parent'=>'barang',
             'status' => 'active'
         );
+        $this->load->model('admin/Model_Barang');
+		$this->load->model('admin/Model_Kategori');
+		$this->load->model('Model_Registrasi');
+		$this->load->model('Model_User');
 	}
 
 	public function index(){
 		$this->data['session_data'] = $this->session_data;
 		$this->data['is_pelanggan'] = $this->is_pelanggan;
-		$this->load->model('admin/Model_Barang');
-		$this->load->model('admin/Model_Kategori');
-		$this->load->model('Model_Registrasi');
-		$this->load->model('Model_User');
 
 		$this->data['provinsi'] = $this->Model_Registrasi->getProvinsi();
 		$this->data['kategori'] = $this->Model_Kategori->get();
@@ -71,7 +71,28 @@ class Pemesanan extends CI_Controller {
 			);
 			$this->load->model('Model_Pemesanan');
 			if($this->Model_Pemesanan->input($data)){
-				echo "<script>alert('Data tersimpan, segerah lakukan pembayaran');</script>";
+				$data_barang = array(array());
+				extract($_POST);
+				$total_bayar = 0;
+				for($i=0; $i < count($kode_barang); $i++){
+					$brg = $this->Model_Barang->get($kode_barang[$i]);
+					$b = $brg->row();
+					$total_bayar = $qty[$i]*$b->harga;
+					$data_barang[$i]['kode_pemesanan'] = $kode_pemesanan;
+					$data_barang[$i]['email_pelanggan'] = $this->session_data['username'];
+					$data_barang[$i]['kode_barang'] = $kode_barang[$i];
+					$data_barang[$i]['jml_pesanan'] = $qty[$i];
+					$data_barang[$i]['total_bayar'] = $total_bayar;
+				}
+				if($this->Model_Pemesanan->inputDetail($data_barang)){
+					echo "<script>alert('Data tersimpan, segerah lakukan pembayaran');</script>";
+					redirect(URL_.'riwayat/pemesanan','refresh');
+				}else{
+					echo "<script>alert('Input detail gagal');</script>";
+					redirect(URL_,'refresh');
+				}
+			}else{
+				echo "<script>alert('Input detail gagal');</script>";
 				redirect(URL_,'refresh');
 			}
 		}else{
