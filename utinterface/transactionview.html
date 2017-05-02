@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAP Application</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- orris -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+    <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Admin</strong>
+                            </span> <span class="text-muted text-xs block">Dropdown <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                          
+                            <li><a href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level  collapse">
+                        <li><a href="index.html">Dashboard FMC</a></li>
+                        <li><a href="reguler.html">Dashboard V.2</a></li>
+
+                    </ul>
+                </li>
+                <li  class="active">
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="active"><a href="transaction.html">Used Oil</a></li>
+                        <li><a href="newoil.html">New Oil, Fuel & Others</a></li>
+                        <li><a href="unitno.html">UnitNo History</a></li>
+                        <li><a href="mhealth.html">Machine Health</a></li>
+                        <li><a href="chealth.html">Component Health</a></li>
+                        <li><a href="mcomparation.html">Machine Comparation</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="stracking.html"><i class="fa fa-truck"></i> <span class="nav-label">Sample Tracking</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to PAP Report Application</span>
+                </li>
+             
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+               <!-- <li>
+                    <a class="right-sidebar-toggle">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+                -->
+            </ul>
+
+        </nav>
+        </div>
+           
+         <div class="wrapper wrapper-content animated fadeInRight" >
+            <div class="row">
+<div class="col-lg-12">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab-1"> Sample Information</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-2">Physical Test</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-3">Metal Additive</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-4">Contaminant</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-5">Wear Metal</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-6">FTIR</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-7">Cleanlines</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-8">Foaming Characteristic</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-9">Eval Code & Recomendation</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-10">Other Parameters</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-11">CONV</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                     <thead>
+                                                        <tr>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                    <tr>
+                                        <td>Group</td>
+                                        <td>FMC PAMA BAYA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PR Number</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SPB Number</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lab Number</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sample Date</td>
+                                        <td>2016/01/03</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Receive Date</td>
+                                        <td>2016/01/05</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Report Number</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Report Date</td>
+                                        <td>2016/01/06</td> 
+                                    </tr>
+                                    <tr>
+                                        <td>Unit Number</td>
+                                        <td>LD467</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Component</td>
+                                        <td>REAR DIFFERENTIAL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Component</td>
+                                        <td>REAR DIFFERENTIAL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model</td>
+                                        <td>P420</td>
+                                    </tr>
+                                     <tr>
+                                        <td>Oil Type</td>
+                                        <td>MEDITRAN 85W/140</td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Oil Matrix</td>
+                                        <td>GEN FDO 140</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Orig Visc</td>
+                                        <td>140</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matrix</td>
+                                        <td>GEF30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HRS KM OH</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HRS KM OC</td>
+                                        <td>1058</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HRS KM TOT</td>
+                                        <td>29032</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oil Chg</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comp Chg</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FC</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Filter Cut Desc</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MP</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magnetic Plug Desc</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>colourcode CODE</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Viscosity 40</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Viscosity 40 Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Visc 100</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Viscosity 100 Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TBN</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TBN Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TAN</td>
+                                        <td>ENGINE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TAN Code</td>
+                                        <td>PERTAMINA</td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-3" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Magnesium</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magnesium Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zinc</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zinc Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Molybdenum</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Molybdenum Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Boron</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Boron Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phosphor</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phosphor Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-4" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Natrium</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Natrium Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silicon</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silicon Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fuel Dilution</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Fuel Dilution Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Water Content</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Water Content Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Glycol</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Glycol Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Color</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-5" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Iron</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Iron Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Copper</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Copper Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alumunium</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alumunium Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chromium</td>
+                                        <td>P410CB</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Chromium Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Nickel</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nickel Code</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tin</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tin Code</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lead</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lead Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PQ Index</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PQ Index Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-6" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Soot</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soot Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oxidation</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oxidation Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nitration</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nitration Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sulfation</td>
+                                        <td>P410CB</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Sulfation Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-7" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>4 um</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4 um Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6 um</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6 um Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 um</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 um Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISO4406</td>
+                                        <td>P410CB</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>ISO4406 Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-8" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Seq I</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seq I Code</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seq II</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seq II Code</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seq III</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seq III Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                            <div id="tab-9" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recomendation 1</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recomendation 2</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recomendation 3</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recomendation 4</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Follow Up</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Y/N</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="tab-10" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Serial No.</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>REFF</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ZDDP</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCCek</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Visc Index</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Visc Index Code</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Visc SAE</td>
+                                        <td>P410CB</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Visc SAE Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silver</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Silver Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Barium</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Barium Code</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sulphur</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>UT EMD</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>UT ESN</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Karl Fischer</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rubbing Wear Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rubbing Wear Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Cutting Wear Size</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cutting Wear Conc</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scuffing Wear Size</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scuffing Wear Conc</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fatigue Wear Size</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fatigue Wear Conc</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fatigue Laminar Size</td>
+                                        <td>P410CB</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Fatigue Laminar Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spheres Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spheres Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dark Oxides Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dark Oxides Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Red Oxides Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Red Oxides Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Non Ferrous Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Non Ferrous Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Misc Dust Size</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Misc Dust Conc</td>
+                                        <td>P410CB</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="tab-11" class="tab-pane">
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>IRON CONV</td>
+                                        <td>B16000242</td>
+                                    </tr>
+                                    <tr>
+                                        <td>COPPER CONV</td>
+                                        <td>ANALISA PELUMAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ALUMUNIUM CONV</td>
+                                        <td>620357171</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CHROMIUM CONV</td>
+                                        <td>LD786</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LEAD CONV</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SODIUM CONV</td>
+                                        <td>SCANIA</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div>
+                <strong>Copyright</strong> Petrolab Services &copy; 2017
+            </div>
+        </div>
+
+        </div>
+        
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Morris demo data-->
+    <script type="text/javascript">
+$(function() {
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart3',
+        data: [{ y: 'FMC', a: 60, b: 50, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUA BKJ', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA LATI', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC OTHERS', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BAYA', a: 100, b: 90, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BDL', a: 100, b: 90, c: 30, d: 40, e: 20 }
+             ],
+        xkey: 'y',
+        ykeys: ['a', 'b', 'c', 'd', 'e'],
+        labels: ['Visc', 'TBN', 'TAN', 'WearSeries D', 'Water'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#ff0000', '#800080', '#00ffff','#e2f442','#73e600'],
+    });
+});
+    </script>
+
+</body>
+</html>

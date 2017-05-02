@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAP Application</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- orris -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Admin</strong>
+                            </span> <span class="text-muted text-xs block">Dropdown <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                          
+                            <li><a href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                                <li class="active">
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="active"><a href="index.html">Dashboard FMC</a></li>
+                        <li><a href="reguler.html">Dashboard V.2</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="transaction.html">Used Oil</a></li>
+                        <li><a href="newoil.html">New Oil, Fuel & Others</a></li>
+                        <li><a href="unitno.html">UnitNo History</a></li>
+                        <li><a href="mhealth.html">Machine Health</a></li>
+                        <li><a href="chealth.html">Component Health</a></li>
+                        <li><a href="mcomparation.html">Machine Comparation</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="stracking.html"><i class="fa fa-truck"></i> <span class="nav-label">Sample Tracking</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to PAP Report Application</span>
+                </li>
+             
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+               <!-- <li>
+                    <a class="right-sidebar-toggle">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+                -->
+            </ul>
+
+        </nav>
+        </div>
+           
+         <div class="wrapper wrapper-content animated fadeInRight" >
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Track Your Sample!</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                    <div class="row">
+                                <div class="col-sm-12 m-b-xs">
+                                <form role="form">
+                                <form action="index.html" method="get">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Sample ID" name="search" class="form-control input-lg">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-lg btn-primary" type="submit">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                </form>
+                                </div>
+                                 <div class="col-sm-12 m-b-xs">
+                                 <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center;" colspan="3">Permintaan Ekspedisi</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align: center; border: none;" colspan="3">No: jhsusyhijiuhweihueuy</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>Kepada,</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Warehouse, PT. UT SITE DAMAI</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Ekspedisi : Harmoni </td>
+                                    <td></td>
+                                    </tr>
+                                    <tr>
+                                    <td>No. Pol &nbsp;&nbsp;&nbsp;&nbsp;: </td>
+                                    </tr>
+                                    <tr>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> DALAM KOTA / SEKITARNYA</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> KENDARAAN DARURAT</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> REGULER</label></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> ANTAR KOTA</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> PESAWAT UDARA</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> BORONGAN</label></td>
+                                    </tr>
+                                    <tr>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> ANTAR PULAU</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> KENDARAAN LAUT</label></td>
+                                    <td><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> OTHER :....</label></td>
+                                    </tr>
+                                    <tr>
+                                    <td>Permintaan dari : Service Department - PT.UT~Damai</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Tujuan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Laboratorium PAP
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td>Attention &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Bpk. Taufik</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Special requirement dari pemohon</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Jenis barang yang diangkut adalah :</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+                                <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Border Table </h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>UNIT & PS</th>
+                                    <th>BOTOL</th>
+                                    <th>QTY</th>
+                                    <th>REMARK</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>OIL SAMPLE</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                            </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2015
+            </div>
+        </div>
+
+        </div>
+        
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Morris demo data-->
+    <script type="text/javascript">
+$(function() {
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart3',
+        data: [{ y: 'FMC', a: 60, b: 50, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUA BKJ', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA LATI', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC OTHERS', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BAYA', a: 100, b: 90, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BDL', a: 100, b: 90, c: 30, d: 40, e: 20 }
+             ],
+        xkey: 'y',
+        ykeys: ['a', 'b', 'c', 'd', 'e'],
+        labels: ['Visc', 'TBN', 'TAN', 'WearSeries D', 'Water'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#ff0000', '#800080', '#00ffff','#e2f442','#73e600'],
+    });
+});
+
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').DataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable( '../example_ajax.php', {
+                "callback": function( sValue, y ) {
+                    var aPos = oTable.fnGetPosition( this );
+                    oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+                },
+                "submitdata": function ( value, settings ) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition( this )[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            } );
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData( [
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row" ] );
+
+        }
+    </script>
+
+</body>
+</html>

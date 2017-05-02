@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAP Application</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- orris -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Admin</strong>
+                            </span> <span class="text-muted text-xs block">Dropdown <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                          
+                            <li><a href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                               <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="index.html">Dashboard FMC</a></li>
+                        <li><a href="reguler.html">Dashboard V.2</a></li>
+
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="transaction.html">Used Oil</a></li>
+                        <li><a href="newoil.html">New Oil, Fuel & Others</a></li>
+                        <li class="active"><a href="unitno.html">UnitNo History</a></li>
+                        <li><a href="mhealth.html">Machine Health</a></li>
+                        <li><a href="chealth.html">Component Health</a></li>
+                        <li><a href="mcomparation.html">Machine Comparation</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="stracking.html"><i class="fa fa-truck"></i> <span class="nav-label">Sample Tracking</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to PAP Report Application</span>
+                </li>
+             
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+               <!-- <li>
+                    <a class="right-sidebar-toggle">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+                -->
+            </ul>
+
+        </nav>
+        </div>
+           
+         <div class="wrapper wrapper-content animated fadeInRight" >
+            <div class="row">
+            <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Unit No</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-3 m-b-xs">
+                                <form role="form">
+                                    <div class="form-group"><label>Group</label> <input type="text" placeholder="Group" class="form-control"></div>
+                                    <label>Receive Date</label>
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                </div>
+                                <div class="form-group" id="data_5">                                
+                                
+                                <div class="form-group"><label>Model</label> <input type="text" placeholder="Model" class="form-control"></div>
+                                <div class="form-group">
+                                </div>
+                            </div>
+                                    <div><button class="btn btn-sm btn-primary pull-left m-t-n-xs" type="submit"><strong>Search</strong></button></div>
+                                </form>
+                                </div>
+                                 <div class="col-sm-3 m-b-xs">
+                                <form role="form">
+                                    <label>Sample Date</label>
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                </div>
+                                    <label>Report Date</label>
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                </div>                                  
+                               
+                                <div class="form-group"><label>Component</label> <input type="text" placeholder="Component" class="form-control"></div>                              
+                                </form>
+                                </div>
+                                <div class="col-sm-3 m-b-xs">
+                                    <div class="form-group"><label>Unit No</label> <input type="text" placeholder="Unit No" class="form-control"></div>
+                                     <div class="form-group"><label>Lab No</label> <input type="text" placeholder="Lab No" class="form-control"></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th></th>
+                                        <th>Group Loc</th>
+                                        <th>Serial No</th>
+                                        <th>Unit No</th>
+                                        <th>Model</th>
+                                        <th>Customer</th>
+                                        <th>Component</th>
+                                        <th>Eval Code</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                         <a href="http://localhost/utinterface/unitnoview.html"><i class="fa fa-search"></i></a>
+                                        </td>
+
+                                        <td>FMC PAMA BAYA</td>
+                                        <td>XLEP8X400052327</td>
+                                        <td>LD486</td>
+                                        <td>P420</td>
+                                        <td>PT. PAMA PERSADA NUSANTARA</td>
+                                        <td>ENGINE</td>
+                                        <td>N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <i class="fa fa-search">
+                                        </td>
+
+                                        <td>FMC PAMA BAYA</td>
+                                        <td>XLEP8X400052327</td>
+                                        <td>LD486</td>
+                                        <td>P420</td>
+                                        <td>PT. PAMA PERSADA NUSANTARA</td>
+                                        <td>TRANSMISSION</td>
+                                        <td>N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <i class="fa fa-search">
+                                        </td>
+
+                                        <td>FMC PAMA BAYA</td>
+                                        <td>9BSP6X400036350</td>
+                                        <td>LD437</td>
+                                        <td>P380</td>
+                                        <td>PT. PAMA PERSADA NUSANTARA</td>
+                                        <td>ENGINE</td>
+                                        <td>N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <i class="fa fa-search">
+                                        </td>
+
+                                        <td>FMC PAMA BAYA</td>
+                                        <td>9BSP6X400036350</td>
+                                        <td>LD437</td>
+                                        <td>P380</td>
+                                        <td>PT. PAMA PERSADA NUSANTARA</td>
+                                        <td>TRANSMISSION</td>
+                                        <td>B</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Petrolab Services &copy; 2017
+            </div>
+        </div>
+
+        </div>
+        
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+
+    <!-- Morris -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Morris demo data-->
+    <script type="text/javascript">
+$(function() {
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{ y: 'Jan', a: 42},
+            { y: 'Feb', a: 43},
+            { y: 'Mar', a: 48},
+            { y: 'Apr', a: 46},
+            { y: 'May', a: 48},
+            { y: 'Jun', a: 51},
+            { y: 'Jul', a: 42},
+            { y: 'Aug', a: 54},
+            { y: 'Sep', a: 51},
+            { y: 'Okt', a: 37},],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Series A'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#1ab394'],
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart3',
+        data: [{ y: 'FMC', a: 60, b: 50, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUA BKJ', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC BUMA LATI', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC OTHERS', a: 50, b: 40, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA ADR', a: 75, b: 65, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BAYA', a: 100, b: 90, c: 30, d: 40, e: 20 },
+            { y: 'FMC PAMA BDL', a: 100, b: 90, c: 30, d: 40, e: 20 }
+             ],
+        xkey: 'y',
+        ykeys: ['a', 'b', 'c', 'd', 'e'],
+        labels: ['Visc', 'TBN', 'TAN', 'WearSeries D', 'Water'],
+        hideHover: 'auto',
+        resize: true,
+        barColors: ['#ff0000', '#800080', '#00ffff','#e2f442','#73e600'],
+    });
+});
+    </script>
+
+</body>
+</html>
