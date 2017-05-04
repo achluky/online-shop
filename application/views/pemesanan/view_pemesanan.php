@@ -2,7 +2,7 @@
 <html lang="en">
 	<?php $this->load->view('include/head'); ?>
     <?php $this->load->view('include/navigation'); ?>
-    <?php $this->load->view('include/intro'); ?>
+    <?php //$this->load->view('include/intro'); ?>
 	<body id="page-top" class="index">
 
 

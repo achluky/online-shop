@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2017 at 08:38 AM
+-- Generation Time: May 04, 2017 at 12:44 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -94,22 +94,11 @@ INSERT INTO `tbl_barang` (`kode_barang`, `kode_kategori`, `nama_barang`, `harga`
 ('GAD3351870', 'GAD', '~~~~~~~~~~~~~', 0, 0, '', '', '2017-04-28 03:57:50'),
 ('GAD3351966', 'GAD', '11111', 0, 0, '', '', '2017-04-28 03:59:26'),
 ('GAD3352030', 'GAD', 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU', 0, 0, '', '', '2017-04-28 04:00:30'),
+('GAD3891426', 'GAD', 'DDDDDDDDDDDDDDDDDD', 2147483647, 2147483647, '22222222222222222', '1c2e486d5aeaef7a558db027d80c13d9.png', '2017-05-04 09:50:26'),
 ('KOM1', 'KOM', 'Dell Alienware', 15000000, 3, 'Core i7\r\nRAM 32GB\r\nNVIDIA GTX1080', '', '2017-04-26 03:28:47'),
 ('KOM3196887', 'KOM', '', 19000, 34, 'dfs', '367fa62d36e95c6e25d55f84bc46783e.jpg', '2017-04-26 08:54:47'),
 ('KOM3197007', 'KOM', '', 17000, 2, '', '91e4ed034c92b2f466b90865f2984067.jpg', '2017-04-26 08:56:47'),
 ('KOM3352190', 'KOM', '%%%%%%%%%%%%%%%%', 0, 0, '00000000000000000000000000000000000', 'd62bb6674bb5e6c1445e0f86a1d3b54e.jpg', '2017-04-28 04:03:10');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_detail_pesanan`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_detail_pesanan` (
-  `id_detail` int(11) NOT NULL,
-  `id_pesanan` int(11) NOT NULL,
-  `kode_pemesanan` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -130,6 +119,29 @@ CREATE TABLE IF NOT EXISTS `tbl_kategori` (
 INSERT INTO `tbl_kategori` (`kode_kategori`, `nama_kategori`, `input_date`) VALUES
 ('GAD', 'Gadget', '2017-04-26 06:06:18'),
 ('KOM', 'Komputer', '2017-04-26 03:27:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_konfirmasi`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_konfirmasi` (
+  `id_konfirmasi` int(11) NOT NULL,
+  `kode_pemesanan` varchar(50) NOT NULL,
+  `judul` varchar(120) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `foto` varchar(120) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_konfirmasi`
+--
+
+INSERT INTO `tbl_konfirmasi` (`id_konfirmasi`, `kode_pemesanan`, `judul`, `deskripsi`, `foto`) VALUES
+(4, '1814938727348298', 'CEK 1', 'CEK 2', 'f45e1413b3fcea33041f95db3fc144f9.png'),
+(5, '18149387268314777', 'CEK', 'CEK CEK', '328ff3aba7c794e8406566db27a6542a.png'),
+(6, '1814938727348298', '', '', 'e21f33e994cb74b6bd1cda5f2234b921.jpg');
 
 -- --------------------------------------------------------
 
@@ -175,8 +187,22 @@ CREATE TABLE IF NOT EXISTS `tbl_pengiriman` (
   `kota` varchar(30) NOT NULL,
   `kecamatan` varchar(30) NOT NULL,
   `kode_pos` varchar(8) NOT NULL,
-  `detail_alamat` text NOT NULL
+  `detail_alamat` text NOT NULL,
+  `waktu_pemesanan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('Menunggu','Terverifikasi','Terkirim','Batal','Kadaluarsa') NOT NULL DEFAULT 'Menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pengiriman`
+--
+
+INSERT INTO `tbl_pengiriman` (`kode_pemesanan`, `nama`, `no_telp`, `id_provinsi`, `kota`, `kecamatan`, `kode_pos`, `detail_alamat`, `waktu_pemesanan`, `status`) VALUES
+('1814937211897568', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-02 01:14:30', 'Menunggu'),
+('1814938597804229', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 01:14:30', 'Menunggu'),
+('18149387263616256', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:37:16', 'Menunggu'),
+('18149387268314777', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:03', 'Menunggu'),
+('18149387271215957', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:32', 'Menunggu'),
+('1814938727348298', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:54', 'Menunggu');
 
 -- --------------------------------------------------------
 
@@ -186,22 +212,39 @@ CREATE TABLE IF NOT EXISTS `tbl_pengiriman` (
 
 CREATE TABLE IF NOT EXISTS `tbl_pesanan` (
   `id_pesanan` int(11) NOT NULL,
+  `kode_pemesanan` varchar(50) NOT NULL,
   `email_pelanggan` varchar(80) NOT NULL,
   `kode_barang` varchar(10) NOT NULL,
   `jml_pesanan` int(5) NOT NULL,
   `total_bayar` varchar(10) NOT NULL,
-  `status` enum('Menunggu','Terkirim','Batal') NOT NULL DEFAULT 'Menunggu',
+  `status` enum('Menunggu','Terverifikasi','Terkirim','Batal','Kadaluarsa') NOT NULL DEFAULT 'Menunggu',
   `waktu_pemesanan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_pesanan`
 --
 
-INSERT INTO `tbl_pesanan` (`id_pesanan`, `email_pelanggan`, `kode_barang`, `jml_pesanan`, `total_bayar`, `status`, `waktu_pemesanan`) VALUES
-(1, 'muhammadrosidin@gmail.com', 'GAD3196844', 3, '0', 'Menunggu', '2017-04-27 04:23:33'),
-(2, 'larashati@gmail.com', 'GAD3196844', 2, '0', 'Menunggu', '2017-04-27 04:25:41'),
-(3, 'larashati@gmail.com', 'KOM3196887', 1, '0', 'Menunggu', '2017-04-27 04:25:56');
+INSERT INTO `tbl_pesanan` (`id_pesanan`, `kode_pemesanan`, `email_pelanggan`, `kode_barang`, `jml_pesanan`, `total_bayar`, `status`, `waktu_pemesanan`) VALUES
+(6, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-02 10:33:09'),
+(7, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-02 10:33:09'),
+(8, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3259346', 3, '90000', 'Menunggu', '2017-05-02 10:33:09'),
+(9, '1814937211897568', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Menunggu', '2017-05-02 10:33:09'),
+(10, '1814938597804229', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 01:03:01'),
+(11, '1814938597804229', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-04 01:03:01'),
+(12, '18149387263616256', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 04:37:16'),
+(13, '18149387263616256', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-04 04:37:16'),
+(14, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Menunggu', '2017-05-04 04:38:03'),
+(15, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196975', 1, '18900', 'Menunggu', '2017-05-04 04:38:03'),
+(16, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196993', 1, '25600', 'Menunggu', '2017-05-04 04:38:03'),
+(17, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3259346', 1, '30000', 'Menunggu', '2017-05-04 04:38:03'),
+(18, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM1', 1, '15000000', 'Menunggu', '2017-05-04 04:38:03'),
+(19, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Menunggu', '2017-05-04 04:38:03'),
+(20, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3197007', 1, '17000', 'Menunggu', '2017-05-04 04:38:03'),
+(21, '18149387271215957', 'muhammadrosidin@gmail.com', 'GAD3196844', 1, '28800', 'Menunggu', '2017-05-04 04:38:32'),
+(22, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Menunggu', '2017-05-04 04:38:54'),
+(23, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 04:38:54'),
+(24, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196984', 3, '75000', 'Menunggu', '2017-05-04 04:38:54');
 
 -- --------------------------------------------------------
 
@@ -278,18 +321,17 @@ ALTER TABLE `tbl_barang`
   ADD KEY `kode_kategori` (`kode_kategori`);
 
 --
--- Indexes for table `tbl_detail_pesanan`
---
-ALTER TABLE `tbl_detail_pesanan`
-  ADD PRIMARY KEY (`id_detail`),
-  ADD KEY `id_pesanan` (`id_pesanan`),
-  ADD KEY `kode_pemesanan` (`kode_pemesanan`);
-
---
 -- Indexes for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
   ADD PRIMARY KEY (`kode_kategori`);
+
+--
+-- Indexes for table `tbl_konfirmasi`
+--
+ALTER TABLE `tbl_konfirmasi`
+  ADD PRIMARY KEY (`id_konfirmasi`),
+  ADD KEY `kode_pemesanan` (`kode_pemesanan`);
 
 --
 -- Indexes for table `tbl_pelanggan`
@@ -310,7 +352,8 @@ ALTER TABLE `tbl_pengiriman`
 ALTER TABLE `tbl_pesanan`
   ADD PRIMARY KEY (`id_pesanan`),
   ADD KEY `email_pelanggan` (`email_pelanggan`),
-  ADD KEY `kode_barang` (`kode_barang`);
+  ADD KEY `kode_barang` (`kode_barang`),
+  ADD KEY `kode_pemesanan` (`kode_pemesanan`);
 
 --
 -- Indexes for table `tbl_provinsi`
@@ -328,15 +371,15 @@ ALTER TABLE `tbl_provinsi`
 ALTER TABLE `level_user`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `tbl_detail_pesanan`
+-- AUTO_INCREMENT for table `tbl_konfirmasi`
 --
-ALTER TABLE `tbl_detail_pesanan`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+ALTER TABLE `tbl_konfirmasi`
+  MODIFY `id_konfirmasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tbl_pesanan`
 --
 ALTER TABLE `tbl_pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tbl_provinsi`
 --
@@ -359,11 +402,10 @@ ALTER TABLE `tbl_barang`
   ADD CONSTRAINT `tbl_barang_ibfk_1` FOREIGN KEY (`kode_kategori`) REFERENCES `tbl_kategori` (`kode_kategori`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_detail_pesanan`
+-- Constraints for table `tbl_konfirmasi`
 --
-ALTER TABLE `tbl_detail_pesanan`
-  ADD CONSTRAINT `tbl_detail_pesanan_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `tbl_pesanan` (`id_pesanan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_detail_pesanan_ibfk_2` FOREIGN KEY (`kode_pemesanan`) REFERENCES `tbl_pengiriman` (`kode_pemesanan`) ON UPDATE CASCADE;
+ALTER TABLE `tbl_konfirmasi`
+  ADD CONSTRAINT `tbl_konfirmasi_ibfk_1` FOREIGN KEY (`kode_pemesanan`) REFERENCES `tbl_pengiriman` (`kode_pemesanan`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_pelanggan`
@@ -376,7 +418,8 @@ ALTER TABLE `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pesanan`
   ADD CONSTRAINT `tbl_pesanan_ibfk_1` FOREIGN KEY (`email_pelanggan`) REFERENCES `tbl_pelanggan` (`email_pelanggan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_pesanan_ibfk_3` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode_barang`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_pesanan_ibfk_3` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode_barang`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_pesanan_ibfk_4` FOREIGN KEY (`kode_pemesanan`) REFERENCES `tbl_pengiriman` (`kode_pemesanan`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

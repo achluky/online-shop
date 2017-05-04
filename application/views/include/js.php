@@ -12,4 +12,4 @@
     <script src="<?= URL_ ?>js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="<?= URL_ ?>js/agency.min.js"></script>
+    <!-- <script src="<?= URL_ ?>js/agency.min.js"></script> -->

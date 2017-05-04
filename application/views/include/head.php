@@ -10,6 +10,7 @@
     <title>Online Shop</title>
 
     <!-- Bootstrap Core CSS -->
+    
     <link href="<?= URL_ ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->

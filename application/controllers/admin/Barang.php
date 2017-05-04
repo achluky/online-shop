@@ -28,7 +28,7 @@ class Barang extends CI_Controller {
             $file_name = "";
 
             if($_FILES['foto']['size'] > 0){
-                echo"<script>alert('1')</script>";
+                //echo"<script>alert('1')</script>";
                 $file_name = md5(time());
                 $this->load->library('upload');
                 $config['upload_path']          = './img/barang';

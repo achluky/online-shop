@@ -45,6 +45,7 @@
     <?php }
 		$this->load->view('include/js'); 
 	?>
+    <script src="<?= URL_ ?>js/agency.min.js"></script>
 	</body>
 </html>
 <script type="text/javascript">
