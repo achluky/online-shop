@@ -40,7 +40,7 @@
 	                <div class="ibox-content">
 
 	                <div class="table-responsive">
-		                <table class="table table-striped table-bordered table-hover pesanan" >
+		                <table class="table table-striped table-bordered table-hover pesanan" style="width: 1366px">
 			                <thead>
 			               		<tr>
 	                                <th>No</th>

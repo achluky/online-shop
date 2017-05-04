@@ -35,14 +35,16 @@ class Pesanan extends CI_Controller {
         foreach ($list as $dt) {
             $row = array();
             $row[] = ++$no;
-            $row[] = "<a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Kirim</a>
+            $row[] = "<a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Konf</a>
+                      <a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Kirim</a>
                       <a class='btn btn-danger' data-toggle='modal' href='#batal_".$dt->kode_pemesanan."'>Batal</a>
                       <a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
             $row[] = $dt->kode_pemesanan;
             $row[] = $dt->nama;
             $row[] = $dt->no_telp;
             $row[] = $dt->email_pelanggan;
-            $row[] = number_format($dt->total_bayar);
+            $total = $this->Model_Pesanan->getTotal($dt->kode_pemesanan);
+            $row[] = "Rp. ".number_format($total->total_bayar);
             $data[] = $row; 
         }
         

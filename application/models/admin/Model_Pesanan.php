@@ -9,16 +9,13 @@ class Model_Pesanan extends CI_Model{
 	);
 
 	public $column = array(
-		"tbl_detail_pesanan.kode_pemesanan",
-		"tbl_detail_pesanan.kode_pemesanan",
+		"tbl_pesanan.kode_pemesanan",
+		"tbl_pesanan.kode_pemesanan",
 		"tbl_pelanggan.nama",
 		"tbl_pelanggan.no_telp",
 		"tbl_pelanggan.email_pelanggan",
 		"tbl_pesanan.total_bayar",
-		"tbl_detail_pesanan.id_detail",
-		"tbl_detail_pesanan.id_pesanan",
-
-		"tbl_pesanan.waktu_pemesanan"
+		"tbl_pengiriman.waktu_pemesanan"
 	);
 	
 	public $order = array ('tbl_pesanan.waktu_pemesanan' => 'DESC'); 
@@ -29,11 +26,11 @@ class Model_Pesanan extends CI_Model{
 
 	public function get(){
 		$this->db->select($this->column);
-		$this->db->from($this->table[0]);
-		$this->db->join($this->table[1], $this->table[0].'.id_pesanan = '.$this->table[1].'.id_pesanan');
-		$this->db->join($this->table[4], $this->table[1].'.email_pelanggan = '.$this->table[4].'.email_pelanggan');
-		$this->db->join($this->table[2], $this->table[1].'.kode_barang = '.$this->table[2].'.kode_barang');
-		$this->db->group_by($this->table[0].".kode_pemesanan");
+		$this->db->from($this->table[1]);
+		$this->db->join('tbl_pengiriman','tbl_pesanan.kode_pemesanan = tbl_pengiriman.kode_pemesanan','inner');
+		$this->db->join($this->table[4], $this->table[1].'.email_pelanggan = '.$this->table[4].'.email_pelanggan','inner');
+		$this->db->join($this->table[2], $this->table[1].'.kode_barang = '.$this->table[2].'.kode_barang','inner');
+		$this->db->group_by($this->table[1].".kode_pemesanan");
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -59,11 +56,11 @@ class Model_Pesanan extends CI_Model{
 
 	public function _get_datatables_query($start=null, $end=null, $search=null){
 		$this->db->select($this->column);
-		$this->db->from($this->table[0]);
-		$this->db->join($this->table[1], $this->table[0].'.id_pesanan = '.$this->table[1].'.id_pesanan');
-		$this->db->join($this->table[4], $this->table[1].'.email_pelanggan = '.$this->table[4].'.email_pelanggan');
-		$this->db->join($this->table[2], $this->table[1].'.kode_barang = '.$this->table[2].'.kode_barang');
-		$this->db->group_by($this->table[0].".kode_pemesanan");
+		$this->db->from($this->table[1]);
+		$this->db->join('tbl_pengiriman','tbl_pesanan.kode_pemesanan = tbl_pengiriman.kode_pemesanan','inner');
+		$this->db->join($this->table[4], $this->table[1].'.email_pelanggan = '.$this->table[4].'.email_pelanggan','inner');
+		$this->db->join($this->table[2], $this->table[1].'.kode_barang = '.$this->table[2].'.kode_barang','inner');
+		$this->db->group_by($this->table[1].".kode_pemesanan");
 
 		$i = 0;
         foreach ($this->column as $item) {
@@ -83,7 +80,7 @@ class Model_Pesanan extends CI_Model{
 
 	public function count_all(){
 		$this->db->distinct('kode_pemesanan');
-		$this->db->from($this->table[0]);
+		$this->db->from($this->table[1]);
 		return $this->db->count_all_results();
 	}
 
@@ -91,5 +88,14 @@ class Model_Pesanan extends CI_Model{
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
+    }
+
+    public function getTotal($kode=null){
+    	$this->db->select('SUM(total_bayar) as total_bayar');
+    	$this->db->from('tbl_pesanan');
+    	$this->db->where('kode_pemesanan',$kode);
+    	$query = $this->db->get();
+
+    	return $query->row();
     }
 }
