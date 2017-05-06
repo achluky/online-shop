@@ -18,6 +18,7 @@ class Pesanan extends CI_Controller {
 	public function index(){
 		$this->data['menu']['label'] = "pesanan";
         $this->data['pemesanan'] = $this->Model_Pesanan->get();
+        $this->data['konf'] = $this->Model_Pesanan->getKonfirmasi();
         //$this->data['detail'] = $this->Model_Pesanan->getDetail();
 		$this->load->view('admin/pesanan/view_pesanan', $this->data);
 	}
@@ -31,20 +32,41 @@ class Pesanan extends CI_Controller {
 
         $data = array();
 
+        $knfr = "";
         $no = $_POST['start'];
         foreach ($list as $dt) {
             $row = array();
             $row[] = ++$no;
-            $row[] = "<a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Konf</a>
-                      <a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Kirim</a>
-                      <a class='btn btn-danger' data-toggle='modal' href='#batal_".$dt->kode_pemesanan."'>Batal</a>
-                      <a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+            $row[] = $dt->status;
+            $k = "";
+            $cek = $this->Model_Pesanan->cekKonfirmasi($dt->kode_pemesanan);
+            if($cek > 0){
+                $k = "<a class='btn btn-warning' data-toggle='modal' href='#konf_".$dt->kode_pemesanan."'>Konf</a>";
+            }
+            if($this->Model_Pesanan->cekStatus("Menunggu",$dt->kode_pemesanan)){
+                $row[] = "$k
+                          <a class='btn btn-danger' data-toggle='modal' href='#batal_".$dt->kode_pemesanan."'>Batal</a>
+                          <a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+
+            }elseif($this->Model_Pesanan->cekStatus("Terkirim",$dt->kode_pemesanan)){
+                $row[] = "<a class='btn btn-danger' data-toggle='modal' href='#batal_".$dt->kode_pemesanan."'>Batal</a>
+                          <a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+            }elseif($this->Model_Pesanan->cekStatus("Batal",$dt->kode_pemesanan)){
+                $row[] = "<a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+            }elseif($this->Model_Pesanan->cekStatus("Terverifikasi",$dt->kode_pemesanan)){
+                $row[] = "<a class='btn btn-success' data-toggle='modal' href='#kirim_".$dt->kode_pemesanan."'>Kirim</a>
+                          <a class='btn btn-danger' data-toggle='modal' href='#batal_".$dt->kode_pemesanan."'>Batal</a>
+                          <a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+            }elseif($this->Model_Pesanan->cekStatus("Kadaluarsa",$dt->kode_pemesanan)){
+                $row[] = "<a class='btn btn-info' onClick='detail('$dt->kode_pemesanan');' data-toggle='modal' href='#detail_".$dt->kode_pemesanan."'>Detail</a>"; 
+            }
             $row[] = $dt->kode_pemesanan;
             $row[] = $dt->nama;
             $row[] = $dt->no_telp;
             $row[] = $dt->email_pelanggan;
             $total = $this->Model_Pesanan->getTotal($dt->kode_pemesanan);
             $row[] = "Rp. ".number_format($total->total_bayar);
+            $row[] = $dt->waktu_pemesanan;
             $data[] = $row; 
         }
         
@@ -57,6 +79,42 @@ class Pesanan extends CI_Controller {
         //output to json format
         echo json_encode($output);
 	}
+
+    public function verifikasi(){
+        if(isset($_POST['verif'])){
+            $id = $this->input->post('verif');
+            if($this->Model_Pesanan->updateStatus("Terverifikasi",$id)){
+                echo "<script>alert('Status pembayaran terverifikasi !')</script>";
+                redirect(URL_.'admin/pesanan','refresh');
+            }else{
+                echo "<script>alert('Verifikasi gagal !')</script>";
+            }
+        }
+    }
+
+    public function kirim(){
+        if(isset($_POST['kirim'])){
+            $id = $this->input->post('kirim');
+            if($this->Model_Pesanan->updateStatus("Terkirim",$id)){
+                echo "<script>alert('Status pemesanan terkirim !')</script>";
+                redirect(URL_.'admin/pesanan','refresh');
+            }else{
+                echo "<script>alert('Edit gagal !')</script>";
+            }
+        }
+    }
+
+    public function batal(){
+        if(isset($_POST['batal'])){
+            $id = $this->input->post('batal');
+            if($this->Model_Pesanan->updateStatus("Batal",$id)){
+                echo "<script>alert('Status pemesanan dibatalkan !')</script>";
+                redirect(URL_.'admin/pesanan','refresh');
+            }else{
+                echo "<script>alert('Edit gagal !')</script>";
+            }
+        }
+    }
 
 }
 
