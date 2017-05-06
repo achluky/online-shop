@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 12:44 PM
+-- Generation Time: May 06, 2017 at 01:01 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -131,17 +131,26 @@ CREATE TABLE IF NOT EXISTS `tbl_konfirmasi` (
   `kode_pemesanan` varchar(50) NOT NULL,
   `judul` varchar(120) NOT NULL,
   `deskripsi` text NOT NULL,
-  `foto` varchar(120) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `foto` varchar(120) NOT NULL,
+  `waktu_konfirmasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_konfirmasi`
 --
 
-INSERT INTO `tbl_konfirmasi` (`id_konfirmasi`, `kode_pemesanan`, `judul`, `deskripsi`, `foto`) VALUES
-(4, '1814938727348298', 'CEK 1', 'CEK 2', 'f45e1413b3fcea33041f95db3fc144f9.png'),
-(5, '18149387268314777', 'CEK', 'CEK CEK', '328ff3aba7c794e8406566db27a6542a.png'),
-(6, '1814938727348298', '', '', 'e21f33e994cb74b6bd1cda5f2234b921.jpg');
+INSERT INTO `tbl_konfirmasi` (`id_konfirmasi`, `kode_pemesanan`, `judul`, `deskripsi`, `foto`, `waktu_konfirmasi`) VALUES
+(4, '1814938727348298', 'CEK 1', 'CEK 2', 'f45e1413b3fcea33041f95db3fc144f9.png', '2017-05-05 13:56:11'),
+(5, '18149387268314777', 'CEK', 'CEK CEK', '328ff3aba7c794e8406566db27a6542a.png', '2017-05-05 13:56:11'),
+(6, '1814938727348298', '', '', 'e21f33e994cb74b6bd1cda5f2234b921.jpg', '2017-05-05 13:56:11'),
+(7, '1814939910396044', 'ABC', 'AAAA', '07cc40bb4fa7bde00f7ea99cf6e03807.jpg', '2017-05-05 15:22:38'),
+(8, '1814938727348298', 'Custom Web', 'asdasdasd', '195bebe1d703d89a79138712be48fe25.jpg', '2017-05-05 16:31:08'),
+(9, '1814938727348298', 'asdad', 'asdasda asdasd', '49d6ac8a356037c1e64cd5922686574c.jpg', '2017-05-05 17:07:51'),
+(10, '1814938727348298', 'asdasd', 'asdasdsad sdfsdfs', '3887443ba3526dcbf598544052cbebb4.jpg', '2017-05-05 17:08:13'),
+(11, '1814938727348298', 'Dfsdf', 'sdf sdfs', '14b5fcd694dfce5bb176320f04eef429.jpg', '2017-05-05 17:08:26'),
+(12, '18149387263616256', 'as', 'afsdf', '5e6065c62c619f4c1cd8471ba8c5fee8.jpg', '2017-05-05 17:09:41'),
+(13, '18149387263616256', 'sdgdf', 'dfsdf', '83aa4728455d8603236f2e511929d866.jpg', '2017-05-05 17:09:51'),
+(14, '1814938597804229', 'sdfb', 'cvb', '9395844cebc362fcd4bd4abe4423114e.jpg', '2017-05-05 17:10:01');
 
 -- --------------------------------------------------------
 
@@ -171,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `tbl_pelanggan` (
 INSERT INTO `tbl_pelanggan` (`email_pelanggan`, `nama`, `tgl_lahir`, `no_telp`, `id_provinsi`, `kota`, `kecamatan`, `kode_pos`, `detail_alamat`, `foto`, `password`, `input_date`) VALUES
 ('cerdasgroup123@gmail.com', '081252711000', '0000-00-00', '081252711000', 11, 'Bandar Lampung', '35142', '35142', 'Jl. R.A. Basyid Perumahan Panorama Alam Blok A No.2  Labuhan Dalam Tanjung Senang.', 'c3ba0a4b19df81d9334d3937a4753347.jpg', 'c4ca4238a0b923820dcc509a6f75849b', '2017-04-30 10:42:01'),
 ('larashati@gmail.com', 'Laras Hati', '2016-02-02', '089659655665', 11, 'Bandar Lampung', 'Rajabasa', '35144', 'Jl komarudin', 'f76e9512f4aaebe272e2111e597ec157.jpg', 'd41d8cd98f00b204e9800998ecf8427e', '2017-04-26 10:57:19'),
-('muhammadrosidin@gmail.com', 'Muhammad Rosidin', '2017-04-01', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '', '202cb962ac59075b964b07152d234b70', '2017-04-26 03:26:49');
+('muhammadrosidin@gmail.com', 'Muhammad Rosidin', '2017-04-01', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', 'a4.jpg', '202cb962ac59075b964b07152d234b70', '2017-04-26 03:26:49');
 
 -- --------------------------------------------------------
 
@@ -197,12 +206,13 @@ CREATE TABLE IF NOT EXISTS `tbl_pengiriman` (
 --
 
 INSERT INTO `tbl_pengiriman` (`kode_pemesanan`, `nama`, `no_telp`, `id_provinsi`, `kota`, `kecamatan`, `kode_pos`, `detail_alamat`, `waktu_pemesanan`, `status`) VALUES
-('1814937211897568', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-02 01:14:30', 'Menunggu'),
-('1814938597804229', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 01:14:30', 'Menunggu'),
-('18149387263616256', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:37:16', 'Menunggu'),
-('18149387268314777', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:03', 'Menunggu'),
-('18149387271215957', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:32', 'Menunggu'),
-('1814938727348298', '18', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:54', 'Menunggu');
+('1814937211897568', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-02 01:14:30', 'Batal'),
+('1814938597804229', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 01:14:30', 'Menunggu'),
+('18149387263616256', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:37:16', 'Menunggu'),
+('18149387268314777', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:03', 'Terkirim'),
+('18149387271215957', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:32', 'Menunggu'),
+('1814938727348298', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-04 04:38:54', 'Terverifikasi'),
+('1814939910396044', 'Muhammad Rosidin', '089999999999', 18, 'Bandar Lampung', 'Rajabasa', '35144', 'Rajabasa raya bandar lampung', '2017-05-05 13:30:39', 'Terkirim');
 
 -- --------------------------------------------------------
 
@@ -219,32 +229,34 @@ CREATE TABLE IF NOT EXISTS `tbl_pesanan` (
   `total_bayar` varchar(10) NOT NULL,
   `status` enum('Menunggu','Terverifikasi','Terkirim','Batal','Kadaluarsa') NOT NULL DEFAULT 'Menunggu',
   `waktu_pemesanan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_pesanan`
 --
 
 INSERT INTO `tbl_pesanan` (`id_pesanan`, `kode_pemesanan`, `email_pelanggan`, `kode_barang`, `jml_pesanan`, `total_bayar`, `status`, `waktu_pemesanan`) VALUES
-(6, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-02 10:33:09'),
-(7, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-02 10:33:09'),
-(8, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3259346', 3, '90000', 'Menunggu', '2017-05-02 10:33:09'),
-(9, '1814937211897568', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Menunggu', '2017-05-02 10:33:09'),
+(6, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Batal', '2017-05-02 10:33:09'),
+(7, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Batal', '2017-05-02 10:33:09'),
+(8, '1814937211897568', 'muhammadrosidin@gmail.com', 'GAD3259346', 3, '90000', 'Batal', '2017-05-02 10:33:09'),
+(9, '1814937211897568', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Batal', '2017-05-02 10:33:09'),
 (10, '1814938597804229', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 01:03:01'),
 (11, '1814938597804229', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-04 01:03:01'),
 (12, '18149387263616256', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 04:37:16'),
 (13, '18149387263616256', 'muhammadrosidin@gmail.com', 'GAD3196984', 1, '25000', 'Menunggu', '2017-05-04 04:37:16'),
-(14, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Menunggu', '2017-05-04 04:38:03'),
-(15, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196975', 1, '18900', 'Menunggu', '2017-05-04 04:38:03'),
-(16, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196993', 1, '25600', 'Menunggu', '2017-05-04 04:38:03'),
-(17, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3259346', 1, '30000', 'Menunggu', '2017-05-04 04:38:03'),
-(18, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM1', 1, '15000000', 'Menunggu', '2017-05-04 04:38:03'),
-(19, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Menunggu', '2017-05-04 04:38:03'),
-(20, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3197007', 1, '17000', 'Menunggu', '2017-05-04 04:38:03'),
+(14, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Terkirim', '2017-05-04 04:38:03'),
+(15, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196975', 1, '18900', 'Terkirim', '2017-05-04 04:38:03'),
+(16, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3196993', 1, '25600', 'Terkirim', '2017-05-04 04:38:03'),
+(17, '18149387268314777', 'muhammadrosidin@gmail.com', 'GAD3259346', 1, '30000', 'Terkirim', '2017-05-04 04:38:03'),
+(18, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM1', 1, '15000000', 'Terkirim', '2017-05-04 04:38:03'),
+(19, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3196887', 1, '19000', 'Terkirim', '2017-05-04 04:38:03'),
+(20, '18149387268314777', 'muhammadrosidin@gmail.com', 'KOM3197007', 1, '17000', 'Terkirim', '2017-05-04 04:38:03'),
 (21, '18149387271215957', 'muhammadrosidin@gmail.com', 'GAD3196844', 1, '28800', 'Menunggu', '2017-05-04 04:38:32'),
-(22, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Menunggu', '2017-05-04 04:38:54'),
-(23, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Menunggu', '2017-05-04 04:38:54'),
-(24, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196984', 3, '75000', 'Menunggu', '2017-05-04 04:38:54');
+(22, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196960', 1, '18500', 'Terverifikasi', '2017-05-04 04:38:54'),
+(23, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196975', 2, '37800', 'Terverifikasi', '2017-05-04 04:38:54'),
+(24, '1814938727348298', 'muhammadrosidin@gmail.com', 'GAD3196984', 3, '75000', 'Terverifikasi', '2017-05-04 04:38:54'),
+(25, '1814939910396044', 'muhammadrosidin@gmail.com', 'KOM1', 2, '30000000', 'Terkirim', '2017-05-05 13:30:39'),
+(26, '1814939910396044', 'muhammadrosidin@gmail.com', 'KOM3196887', 3, '57000', 'Terkirim', '2017-05-05 13:30:39');
 
 -- --------------------------------------------------------
 
@@ -374,12 +386,12 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `tbl_konfirmasi`
 --
 ALTER TABLE `tbl_konfirmasi`
-  MODIFY `id_konfirmasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_konfirmasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tbl_pesanan`
 --
 ALTER TABLE `tbl_pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tbl_provinsi`
 --

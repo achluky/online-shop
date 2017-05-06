@@ -13,13 +13,46 @@ class Pesanan extends CI_Controller {
             'status' => 'active'
         );
         $this->load->model('admin/Model_Pesanan');
+        $this->load->model('Model_Pemesanan');
 	}
 
 	public function index(){
 		$this->data['menu']['label'] = "pesanan";
-        $this->data['pemesanan'] = $this->Model_Pesanan->get();
+        $query = $this->Model_Pesanan->get();
+        $this->data['pemesanan'] = $query;
         $this->data['konf'] = $this->Model_Pesanan->getKonfirmasi();
         //$this->data['detail'] = $this->Model_Pesanan->getDetail();
+        $i=0;
+        foreach ($query as $pemesan) {
+            $d['kode'] = $pemesan->kode_pemesanan;
+            $d['username'] = $pemesan->email_pelanggan;
+            $q = $this->Model_Pemesanan->getDetailPemesanan($d['kode'], $d);
+            $j=0;
+            foreach ($q->result() as $dtl) {
+                $tmp[$j++] = array(
+                    'kode_barang' => $dtl->kode_barang,
+                    'nama_kategori'  => $dtl->nama_kategori,
+                    'nama_barang' => $dtl->nama_barang,
+                    'harga' => $dtl->harga,
+                    'foto' => $dtl->foto,
+                    'jml_pesanan' => $dtl->jml_pesanan,
+                    'total_bayar' => $dtl->total_bayar,
+                    'kode_pemesanan' => $dtl->kode_pemesanan,
+                    'nama' => $dtl->nama,
+                    'no_telp' => $dtl->no_telp,
+                    'provinsi' => $dtl->provinsi,
+                    'kota' => $dtl->kota,
+                    'kecamatan' => $dtl->kecamatan,
+                    'kode_pos' => $dtl->kode_pos,
+                    'detail_alamat' => $dtl->detail_alamat,
+                    'waktu_pemesanan' => $dtl->waktu_pemesanan,
+                    'status' => $dtl->status
+                );
+            }
+            $detail_pemesanan[$i++] = $tmp;
+        }
+
+        $this->data['detail_pesanan'] = $detail_pemesanan;
 		$this->load->view('admin/pesanan/view_pesanan', $this->data);
 	}
 

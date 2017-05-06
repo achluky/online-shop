@@ -12,5 +12,14 @@
 
     <link href="<?= URL_ ?>admin/css/animate.css" rel="stylesheet">
     <link href="<?= URL_ ?>admin/css/style.css" rel="stylesheet">
-
+    <style type="text/css">
+    	.foto{
+          width: 100%;
+          height: 160px;
+          object-fit: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          overflow: hidden;
+        }
+    </style>
 </head>

@@ -38,113 +38,197 @@
 	                    </div>
 	                </div>
 	                <div class="ibox-content">
+		                <div class="table-responsive">
+			                <table class="table table-striped table-bordered table-hover pesanan" style="width: 1366px; text-align: center;">
+				                <thead >
+				               		<tr>
+		                                <th style="text-align: center;">No</th>
+		                                <th style="text-align: center;">Status</th>
+		                                <th style="text-align: center;">Aksi</th>
+		                                <th style="text-align: center;">Kode Pemesanan</th>
+		                                <th style="text-align: center;">Nama</th>
+		                                <th style="text-align: center;">No Telp</th>
+		                                <th style="text-align: center;">Email</th>
+		                                <th style="text-align: center;">Total Bayar</th>
+		                                <th style="text-align: center;">Waktu Pemesanan</th>
+		                            </tr>
+				                </thead>
+				                <tbody>
 
-	                <div class="table-responsive">
-		                <table class="table table-striped table-bordered table-hover pesanan" style="width: 1366px; text-align: center;">
-			                <thead >
-			               		<tr>
-	                                <th style="text-align: center;">No</th>
-	                                <th style="text-align: center;">Status</th>
-	                                <th style="text-align: center;">Aksi</th>
-	                                <th style="text-align: center;">Kode Pemesanan</th>
-	                                <th style="text-align: center;">Nama</th>
-	                                <th style="text-align: center;">No Telp</th>
-	                                <th style="text-align: center;">Email</th>
-	                                <th style="text-align: center;">Total Bayar</th>
-	                                <th style="text-align: center;">Waktu Pemesanan</th>
-	                            </tr>
-			                </thead>
-			                <tbody>
-		                		<?php foreach ($konf->result() as $konfirmasi) { ?>
-			                	<div class="modal fade" id="konf_<?= $konfirmasi->kode_pemesanan ?>">
-			                		<div class="modal-dialog">
-			                			<div class="modal-content">
-			                				<form action="pesanan/verifikasi" method="POST">
-				                				<div class="modal-header">
-				                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				                					<h4 class="modal-title"><center>#<?= $konfirmasi->kode_pemesanan ?></center></h4>
-				                				</div>
-				                				<div class="modal-body">
-				                					<div class="form-group">
-				                						<label>Waktu Konfirmasi</label>
-				                						<input type="text" class="form-control" name="waktu" value="<?= $konfirmasi->waktu_konfirmasi ?>">
-				                					</div>
-				                					<div class="form-group">
-				                						<label>Judul</label>
-				                						<input type="text" class="form-control" name="judul" value="<?= $konfirmasi->judul ?>">
-				                					</div>
-				                					<div class="form-group">
-				                						<label>Deskripsi</label>
-				                						<textarea class="form-control" name="deskripsi" style="height: 150px;"><?= $konfirmasi->deskripsi ?></textarea>
-				                					</div>
-				                					<div class="form-group">
-				                						<label>Bukti Pembayaran</label>
-				                						<img src="<?= URL_ ?>img/konfirmasi/<?= $konfirmasi->foto ?>" class="img-responsive">
-				                					</div>
-				                					<div class="form-group" style="text-align: justify;">
-				                						<small>Klik tombol <strong>verifikasi</strong>, untuk merubah status pembayaran menjadi terverifikasi, dan pastikan bahwa anda benar-benar yakin untuk melakukan tindakan ini.</small>
-				                					</div>
-				                				</div>
-				                				<div class="modal-footer">
-				                					<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-				                					<button type="submit" class="btn btn-primary" name="verif" value="<?= $konfirmasi->kode_pemesanan ?>">Verifikasi</button>
-				                				</div>
-			                				</form>
-			                			</div>
-			                		</div>
-			                	</div>
-		                		<?php } ?>
-			                	<?php foreach ($pemesanan as $pesanan){ ?>
-			                	<div class="modal fade" id="kirim_<?= $pesanan->kode_pemesanan ?>">
-			                		<div class="modal-dialog">
-			                			<div class="modal-content">
-			                				<form action="pesanan/kirim" method="POST">
-				                				<div class="modal-header">
-				                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				                					<h4 class="modal-title"><center>#<?= $pesanan->kode_pemesanan ?></center></h4>
-				                				</div>
-				                				<div class="modal-body">
-				                					<p>Apakah anda yakin ingin merubah status pemesanan menjadi <strong>Terkirim</strong> ?</p>
-				                				</div>
-				                				<div class="modal-footer">
-				                					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-				                					<button type="submit" class="btn btn-primary" name="kirim" value="<?= $pesanan->kode_pemesanan ?>">Ya</button>
-				                				</div>
-			                				</form>
-			                			</div>
-			                		</div>
-			                	</div>
-			                	<div class="modal fade" id="batal_<?= $pesanan->kode_pemesanan ?>">
-			                		<div class="modal-dialog">
-			                			<div class="modal-content">
-			                				<form action="pesanan/batal" method="POST">
-				                				<div class="modal-header">
-				                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				                					<h4 class="modal-title"><center>Pembatalan Pesanan #<?= $pesanan->kode_pemesanan ?></center></h4>
-				                				</div>
-				                				<div class="modal-body">
-				                					<p>Apakah anda yakin ingin merubah status pemesanan menjadi <strong>Dibatalkan</strong> ?</p>
-				                				</div>
-				                				<div class="modal-footer">
-				                					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-					                					<button type="submit" class="btn btn-primary" name="batal" value="<?= $pesanan->kode_pemesanan ?>">Ya</button>
-				                				</div>
-			                				</form>
-			                			</div>
-			                		</div>
-			                	</div>
-			                	<div class="modal fade" id="detail_<?= $pesanan->kode_pemesanan ?>">
+				           		</tbody>
+			           		</table>
+		           		</div>
+		           	</div>
+		           	<?php foreach ($konf->result() as $konfirmasi) { ?>
+	                	<div class="modal fade" id="konf_<?= $konfirmasi->kode_pemesanan ?>">
+	                		<div class="modal-dialog">
+	                			<div class="modal-content">
+	                				<form action="pesanan/verifikasi" method="POST">
+		                				<div class="modal-header">
+		                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                					<h4 class="modal-title"><center>#<?= $konfirmasi->kode_pemesanan ?></center></h4>
+		                				</div>
+		                				<div class="modal-body">
+		                					<div class="form-group">
+		                						<label>Waktu Konfirmasi</label>
+		                						<input type="text" class="form-control" name="waktu" value="<?= $konfirmasi->waktu_konfirmasi ?>">
+		                					</div>
+		                					<div class="form-group">
+		                						<label>Judul</label>
+		                						<input type="text" class="form-control" name="judul" value="<?= $konfirmasi->judul ?>">
+		                					</div>
+		                					<div class="form-group">
+		                						<label>Deskripsi</label>
+		                						<textarea class="form-control" name="deskripsi" style="height: 150px;"><?= $konfirmasi->deskripsi ?></textarea>
+		                					</div>
+		                					<div class="form-group">
+		                						<label>Bukti Pembayaran</label>
+		                						<img src="<?= URL_ ?>img/konfirmasi/<?= $konfirmasi->foto ?>" class="img-responsive">
+		                					</div>
+		                					<div class="form-group" style="text-align: justify;">
+		                						<small>Klik tombol <strong>verifikasi</strong>, untuk merubah status pembayaran menjadi terverifikasi, dan pastikan bahwa anda benar-benar yakin untuk melakukan tindakan ini.</small>
+		                					</div>
+		                				</div>
+		                				<div class="modal-footer">
+		                					<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+		                					<button type="submit" class="btn btn-primary" name="verif" value="<?= $konfirmasi->kode_pemesanan ?>">Verifikasi</button>
+		                				</div>
+	                				</form>
+	                			</div>
+	                		</div>
+	                	</div>
+                		<?php } ?>
+	                	<?php foreach ($pemesanan as $pesanan){ ?>
+		                	<div class="modal fade" id="kirim_<?= $pesanan->kode_pemesanan ?>">
+		                		<div class="modal-dialog">
+		                			<div class="modal-content">
+		                				<form action="pesanan/kirim" method="POST">
+			                				<div class="modal-header">
+			                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                					<h4 class="modal-title"><center>#<?= $pesanan->kode_pemesanan ?></center></h4>
+			                				</div>
+			                				<div class="modal-body">
+			                					<p>Apakah anda yakin ingin merubah status pemesanan menjadi <strong>Terkirim</strong> ?</p>
+			                				</div>
+			                				<div class="modal-footer">
+			                					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+			                					<button type="submit" class="btn btn-primary" name="kirim" value="<?= $pesanan->kode_pemesanan ?>">Ya</button>
+			                				</div>
+		                				</form>
+		                			</div>
+		                		</div>
+		                	</div>
+		                	<div class="modal fade" id="batal_<?= $pesanan->kode_pemesanan ?>">
+		                		<div class="modal-dialog">
+		                			<div class="modal-content">
+		                				<form action="pesanan/batal" method="POST">
+			                				<div class="modal-header">
+			                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                					<h4 class="modal-title"><center>Pembatalan Pesanan #<?= $pesanan->kode_pemesanan ?></center></h4>
+			                				</div>
+			                				<div class="modal-body">
+			                					<p>Apakah anda yakin ingin merubah status pemesanan menjadi <strong>Dibatalkan</strong> ?</p>
+			                				</div>
+			                				<div class="modal-footer">
+			                					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+				                					<button type="submit" class="btn btn-primary" name="batal" value="<?= $pesanan->kode_pemesanan ?>">Ya</button>
+			                				</div>
+		                				</form>
+		                			</div>
+		                		</div>
+		                	</div>
+
+	                	<?php } ?>
+	                	
+    					<?php 
+    						$cek = 0;
+    						for($i=0; $i < count($detail_pesanan); $i++) { ?>
+			                	<div class="modal fade" id="detail_<?= $detail_pesanan[$i][0]['kode_pemesanan'] ?>">
 			                		<div class="modal-dialog">
 			                			<div class="modal-content">
 			                				<div class="modal-header">
 			                					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			                					<h4 class="modal-title"><center>Detail Pesanan #<?= $pesanan->kode_pemesanan ?></center></h4>
+			                					<h4 class="modal-title"><center>Detail Pesanan #<?= $detail_pesanan[$i][0]['kode_pemesanan'] ?></center></h4>
 			                				</div>
-			                				<div class="modal-body">
-			                					<?php /*foreach($detail->result() as $dtl) {
-			                						echo $dtl->kode_barang." | "$dtl->nama_barang."<br>";
-			                					} */
-			                					?>
+			                				<div class="modal-body"> 
+			                					<table style="width: 100%">
+	        										<tr>
+	        											<td>Kode Pemesanan </td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['kode_pemesanan'] ?></td>
+	        											<td rowspan="9" style="text-align: center;"><img class="foto" style="margin-right: 0px; width:128px; height: 160px" src="<?= URL_.'img/pelanggan/'.$detail_pesanan[$i][0]['foto'] ?>"></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Nama Penerima </td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['nama'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>No Telp.</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['no_telp'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Provinsi</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['provinsi'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Kota / Kab.</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['kota'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Kecamatan</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['kecamatan'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Kode Pos</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['kode_pos'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Alamat</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['detail_alamat'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Waktu Pemesanan</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['waktu_pemesanan'] ?></td>
+	        										</tr>
+	        										<tr>
+	        											<td>Status</td>
+	        											<td style='padding-left:15px;'>: <?= $detail_pesanan[$i][0]['status'] ?></td>
+	        											<td style="text-align: center;">Foto Pemesan</td>
+	        										</tr>
+	        									</table>
+	        									<div class="table-responsive" style="padding-top: 30px;">
+	        										<table class="table table-hover">
+	        											<thead>
+	        												<tr>
+	        													<th style="text-align: center;">No.</th>
+	        													<th style="text-align: center;">Barang</th>
+	        													<th style="text-align: center;">Kategori</th>
+	        													<th style="text-align: center;">Qty</th>
+	        													<th style="text-align: center;">Jml Bayar</th>
+	        												</tr>
+	        											</thead>
+	        											<tbody>
+						                					<?php
+						                					$count = 0;
+						                					$total = 0;
+							    							for($j=0; $j < count($detail_pesanan[$i]); $j++) { 
+							    								$count += $detail_pesanan[$i][$j]['jml_pesanan'];
+							    								$total += $detail_pesanan[$i][$j]['total_bayar']; ?>
+							    								<tr>
+							    									<td style="text-align: center;"><?= $j+1 ?></td>
+							    									<td style="text-align: center;"><?= $detail_pesanan[$i][$j]['nama_barang'] ?></td>
+							    									<td style="text-align: center;"><?= $detail_pesanan[$i][$j]['nama_kategori'] ?></td>
+							    									<td style="text-align: right;"><?= $detail_pesanan[$i][$j]['jml_pesanan'] ?></td>
+							    									<td style="text-align: right">Rp. <?= number_format($detail_pesanan[$i][$j]['total_bayar']) ?></td>
+							    								</tr>
+							    							<?php } ?>
+							    								<tr>
+							    									<th colspan="3" style="text-align: left;"><strong>Total</strong></th>
+							    									<td colspan="1" style="text-align: right;"><strong><?= $count ?></strong></td>
+							    									<td colspan="1" style="text-align: right;"><strong>Rp. <?= number_format($total) ?></strong></td>
+							    								</tr>
+	        											</tbody>
+	        										</table>
+	        									</div>
 			                				</div>
 			                				<div class="modal-footer">
 			                					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -152,10 +236,10 @@
 			                				</div>
 			                			</div>
 			                		</div>
-			                	</div>
-			                	<?php } ?>
-			           		</tbody>
-		           		</table>
+			                	</div> 
+			                	<?php
+				        	} 
+				    	?>
 	           	</div>
 	        </div>
 	    </div>

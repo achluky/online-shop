@@ -61,7 +61,7 @@ class Pemesanan extends CI_Controller {
 			$kode_pemesanan = $this->input->post('provinsi').time().rand();
 			$data = array(
 				'kode_pemesanan' => $kode_pemesanan,
-				'nama' => $this->input->post('provinsi'),
+				'nama' => $this->input->post('nama'),
 				'no_telp' => $this->input->post('no_telp'),
 				'id_provinsi' => $this->input->post('provinsi'),
 				'kota' => $this->input->post('kota'),

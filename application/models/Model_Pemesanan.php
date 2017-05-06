@@ -93,7 +93,8 @@ class Model_Pemesanan extends CI_Model{
 			'tbl_pengiriman.kode_pos',
 			'tbl_pengiriman.detail_alamat',
 			'tbl_pengiriman.waktu_pemesanan',
-			'tbl_pengiriman.status'
+			'tbl_pengiriman.status',
+			'tbl_pelanggan.foto'
 		);
 
 		$this->db->select($column);
